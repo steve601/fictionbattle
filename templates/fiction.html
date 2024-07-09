@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fiction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Fictional Character Battle Outcome Prediction</h1>
+    <div class="container">
+        <form action='/predict' method='POST'>
+            <div class="form-group">
+                <label for="ch">Character</label>
+                <select id="ch" name="ch">
+                    <option value="Wonder Woman">Wonder Woman</option>
+                    <option value="Superman">Superman</option>
+                    <option value="Iron Man">Iron Man</option>
+                    <option value="Thor">Thor</option>
+                    <option value="Flash">Flash</option>
+                    <option value="Batman">Batman</option>
+                    <option value="Spider-Man">Spider-Man</option>
+                    <option value="Captain America">Captain America</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="uni">Universe</label>
+                <select id="uni" name="uni">
+                    <option value=0>Marvel</option>
+                    <option value=1>DC Comics</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="str">Character's strength(1-10)</label>
+                <input type="number" id="str" name="str" min=1 max=10 value="{{ request.form.str if request.form else '' }}" required>
+            </div>
+            <div class="form-group">
+                <label for="sped">Character's speed(1-10)</label>
+                <input type="number" id="sped" name="sped" min=1 max=10 value="{{ request.form.sped if request.form else '' }}" required>
+            </div>
+            <div class="form-group">
+                <label for="int">Character's intelligence level(1-10)</label>
+                <input type="number" id="int" name="int" min=1 max=10 value="{{ request.form.int if request.form else '' }}" required>
+            </div>
+            <div class="form-group">
+                <label for="spec">Special abilities</label>
+                <select id="spec" name="spec">
+                    <option value="Invisibility">Invisibility</option>
+                    <option value="Flight">Flight</option>
+                    <option value="Telekinesis">Telekinesis</option>
+                    <option value="Super Strength">Super Strength</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="weak">Weakness</label>
+                <select id="weak" name="wesk">
+                    <option value="Kryptonite">Kryptonite</option>
+                    <option value="Wooden Stake">Wooden Stake</option>
+                    <option value="Magic">Magic</option>
+                    <option value="Silver">Silver</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="submit">Predict</button>
+            </div>
+        </form>
+        <div class="result">
+            <h3>{{ text }}</h3>
+        </div>
+    </div>
+
+</body>
+</html>
